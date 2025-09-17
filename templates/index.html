@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix UI Clone</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">N</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shows</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">Games</a></li>
+        <li><a href="#">My Netflix</a></li>
+        {% if user.is_authenticated %}
+        <li> Hello {{user.username}}, {{nationality}}, of age {{age}}</li>
+        <li><a href="logout">Log Out</a></li>
+        {% else %}
+        <li><a href="login">Log In</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img src="{% static 'wednesday-bg.jpg' %}" alt="Wednesday Promo" class="hero-img">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="title">Wednesday</h1>
+        <p class="meta">Show • Fantasy • 2022 • TV-14</p>
+        <p class="description">
+          Smart, sarcastic and a little dead inside, Wednesday Addams investigates a murder spree while making new friends — and foes — at Nevermore Academy.
+        </p>
+        <div class="buttons">
+          <button class="btn remind">🔔 Remind Me</button>
+          <button class="btn info">ℹ More Info</button>
+        </div>
+        <span class="tag">📅 Season 2 Coming Soon</span>
+      </div>
+    </section>
+
+    <section class="next-watch">
+      <h2>Your Next Watch</h2>
+      <div class="cards">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+      </div>
+    </section>
+
+    <h1>Feedback</h1>
+    <form method="POST" action="counter">
+      {% csrf_token %}
+      <textarea name = "text" rows="10", cols = "50"></textarea><br>
+      <input type = "submit">
+    </form>
+  </main>
+
+  <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
